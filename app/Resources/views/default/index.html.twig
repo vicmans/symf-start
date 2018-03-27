@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <div id="app">
+    <el-container>
+      <el-header><h1>Hola</h1></el-header>
+      <el-main>
+        <el-row>
+        <el-col :span="12"><el-input placeholder="Escribe tu nombre" v-model="input"></el-input></el-col>
+        <el-col :span="6"><el-button @click="saludo">Enviar</el-button></el-col>
+        <el-col :span="6">
+            <el-button type="primary" @click="visible = true">Da click aqui</el-button>
+                <el-dialog :visible.sync="visible" title="Hola como estas">
+                  <p>Bienvenidos</p>
+                  <span slot="footer" class="dialog-footer">
+                    <el-button type="primary" @click="visible = false">OK</el-button>
+                  </span>
+                </el-dialog>
+            </el-col>
+        </el-row>
+      </el-main>
+    </el-container>
+    
+  </div>
+{% endblock %}
+
+{% block stylesheets %}
+<style type="text/css">
+    body {
+        font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+    }
+    .el-header, .el-footer {
+    color: #333;
+    text-align: center;
+    line-height: 60px;
+  }
+  
+  h1 {
+    margin-bottom: 1em
+  }
+  
+  .el-main {
+    background-color: #E9EEF3;
+    color: #333;
+    text-align: center;
+    line-height: 160px;
+  }
+  
+  body > .el-container {
+    margin-bottom: 40px;
+  }
+  
+  .el-container:nth-child(5) .el-aside,
+  .el-container:nth-child(6) .el-aside {
+    line-height: 260px;
+  }
+  
+  .el-container:nth-child(7) .el-aside {
+    line-height: 320px;
+  }
+</style>
+{% endblock %}
+{% block javascripts %}
+
+  <script>
+    new Vue({
+      el: '#app',
+      methods: {
+        saludo() {
+          window.location = '/person/'+this.input
+        }
+      },
+      data: function() {
+          return {
+              visible: false,
+              input: ''
+          } 
+        }
+      
+    })
+  </script>
+{% endblock %}
