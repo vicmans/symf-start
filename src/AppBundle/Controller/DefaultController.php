@@ -49,7 +49,7 @@ class DefaultController extends Controller
     public function showAction($productId)
     {
         $product = $this->getDoctrine()
-            ->getRepository('AppBundle:Product')
+            ->getRepository('AppBundle:Contact')
             ->find($productId);
 
         if (!$product) {
